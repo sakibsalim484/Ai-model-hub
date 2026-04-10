@@ -1,4 +1,5 @@
 import React, { use } from 'react';
+import ModelCard from './ModelCard';
 
 const Model = ({modelpromise}) => {
     const models = use(modelpromise);
@@ -9,14 +10,11 @@ const Model = ({modelpromise}) => {
                 <h1 >Choose Your Model</h1>
                 <p>Select a model from the list below</p>
             </div>
-            <div>
+            <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10'>
                 {
-                models.map(model=> <div key={model.id}>
-                    <div>
-                    <h2 className='font-bold'>{model.title}</h2>
-                    <img src={model.image} alt={model.title} className='w-[10%] h-[10%]' />
-                    </div>
-                </div>)
+                models.map(model=> (
+<ModelCard model={model}></ModelCard>
+                ))
                 }
             </div>
         </div>
