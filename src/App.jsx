@@ -25,7 +25,7 @@ const App = () => {
   
 </div>
 {activeTab === 'model' ? <Model modelpromise={modelpromise} carts={carts} setCarts={setCarts}></Model> : null}
-{activeTab === 'cart' ? <Cart carts={carts} ></Cart> : null}
+{activeTab === 'cart' ? <Cart carts={carts} setCarts={setCarts} ></Cart> : null}
       <Footer></Footer>
     </div>
   )
