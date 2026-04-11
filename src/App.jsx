@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 import Navber from './component/Navber/Navber'
 import Banner from './component/Banner/Banner'
 import Footer from './component/Footer/Footer'
@@ -11,13 +11,21 @@ const getmodels=async()=>{
 
 const modelpromise =getmodels();
 const App = () => {
+  const [activeTab, setActiveTab] = useState('model');
+  const [carts ,setCarts] = useState([]);
+  console.log(activeTab);
   return (
     <div>
       <Navber></Navber>
       <Banner></Banner>
-<Model modelpromise={modelpromise}></Model>
-    
-    <Cart></Cart>
+      {/* name of each tab group should be unique */}
+<div className="tabs tabs-box justify-center">
+  <input type="radio" name="my_tabs_1" className="tab rounded-full w-40" aria-label="Model" defaultChecked onClick={()=>setActiveTab('model')} />
+  <input type="radio" name="my_tabs_1" className="tab rounded-full w-40" aria-label="cart" onClick={()=>setActiveTab('cart')}  />
+  
+</div>
+{activeTab === 'model' ? <Model modelpromise={modelpromise} carts={carts} setCarts={setCarts}></Model> : null}
+{activeTab === 'cart' ? <Cart carts={carts} ></Cart> : null}
       <Footer></Footer>
     </div>
   )
